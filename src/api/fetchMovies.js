@@ -15,3 +15,10 @@ export async function fetchPopularity(query = '') {
 	const response = await axios.get(endpoint, { headers: defaultHeaders })
 	return response.data.results
 }
+
+
+export async function fetchTrendingMovies() {
+	const endpoint = `${BASE_URL}/trending/movie/week`
+	const response = await axios.get(endpoint, {headers: defaultHeaders})
+	return response.data.results
+}
