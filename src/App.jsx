@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { fetchPopularity, fetchTrendingMovies } from './api/fetchMovies'
 import { useDebounce } from 'react-use'
-import Search from './components/Search'
-import Spinner from './components/Spinner'
-import MovieCard from './components/MovieCard'
+
+import Header from './components/Header'
+import MovieList from './components/MovieList'
+import TrendingMovies from './components/TrendingMovies'
 
 function App() {
 	const [searchTerm, setSearchTerm] = useState('')
@@ -50,52 +51,22 @@ function App() {
 		}
 		load()
 	}, [])
+
 	return (
 		<>
 			<div className='pattern' />
 
 			<div className='wrapper'>
-				<header>
-					<img src='./hero.png' alt='Hero Banner' />
-					<h1>
-						Find <span className='text-gradient'>Movies</span> You'll Enjoy
-						Without YeaMovie
-					</h1>
-					<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-				</header>
+				<Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-				<section className='all-movies'>
-					<h2 className='text-center mt-[40px]'>All Movies</h2>
-					{loading.search ? (
-						<Spinner />
-					) : errorMessage ? (
-						<p className='text-red-500'>{errorMessage}</p>
-					) : (
-						<ul>
-							{movies.map(movie => (
-								<MovieCard key={movie.id} movie={movie} />
-							))}
-						</ul>
-					)}
-				</section>
+				<MovieList
+					movies={movies}
+					errorMessage={errorMessage}
+					loading={loading}
+				/>
 
 				{trendingMovies.length > 0 && loading.trending && (
-					<section className='trending'>
-						<h2 className='text-center'>Trending Movies</h2>
-
-						<ul>
-							{trendingMovies.map((movie, idx) => (
-								<li key={idx}>
-									<p>{idx + 1}</p>
-									<img
-										src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-										alt={movie.title}
-										className='transition duration-300 hover:scale-110 cursor-pointer'
-									/>
-								</li>
-							))}
-						</ul>
-					</section>
+					<TrendingMovies trendingMovies={trendingMovies} />
 				)}
 			</div>
 		</>
