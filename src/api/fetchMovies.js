@@ -22,3 +22,15 @@ export async function fetchTrendingMovies() {
 	const response = await axios.get(endpoint, {headers: defaultHeaders})
 	return response.data.results
 }
+
+export async function fetchDetailsMovie(id) {
+	const endpoint = `${BASE_URL}/movie/${id}`
+	const response = await axios.get(endpoint, {headers: defaultHeaders})
+	return response.data
+}
+
+export async function fetchCreditsMovie(id) {
+	const endpoint = `${BASE_URL}/movie/${id}/credits`
+	const response = await axios.get(endpoint, { headers: defaultHeaders })
+	return response.data
+}
