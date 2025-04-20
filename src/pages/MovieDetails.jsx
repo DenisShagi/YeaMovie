@@ -44,7 +44,16 @@ const MovieDetails = () => {
 				className='absolute w-full h-[765px] bg-cover bg-center opacity-40'
 				style={{ backgroundImage: `url(${backdropUrl})` }}
 			/>
+
 			<div className='wrapper'>
+
+					<button
+						className='text-white text-center w-[80px] mb-[40px] bg-gray-400'
+						onClick={() => navigate(-1)}
+					>
+						back
+					</button>
+
 				<section>
 					<article className='w-full max-w-[605px]'>
 						<span className='text-white px-[5px] py-[3px] bg-purple-700 rounded-lg'>
@@ -92,9 +101,6 @@ const MovieDetails = () => {
 				<span className='text-white mt-[450px]'>Actors</span>
 				<CastList />
 			</div>
-			{/* <button className='text-white' onClick={() => navigate(-1)}>
-				back
-			</button> */}
 		</>
 	)
 }
