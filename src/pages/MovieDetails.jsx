@@ -86,7 +86,7 @@ const MovieDetails = () => {
 					</article>
 				</section>
 
-				<span className='text-white mt-[350px]'>Actors</span>
+				<span className='text-white mt-[270px]'>Actors</span>
 				<CastList credits={credits.cast} />
 			</div>
 		</>
