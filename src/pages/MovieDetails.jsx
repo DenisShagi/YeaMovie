@@ -36,10 +36,10 @@ const MovieDetails = () => {
 
 			<div className='wrapper'>
 				<button
-					className='text-white text-center w-[80px] mb-[40px] bg-gray-400'
+					className='text-white text-center cursor-pointer w-[80px] mb-[40px] bg-gray-400 rounded-2xl hover:bg-gray-300 duration-200'
 					onClick={() => navigate(-1)}
 				>
-					back
+					Back
 				</button>
 
 				<section>
