@@ -76,7 +76,23 @@
       @apply w-[127px] h-[163px] rounded-lg object-cover -ml-3.5;
     }
   }
+  .actors {
+    @apply mt-20;
 
+    & button {
+      @apply w-[40px] cursor-pointer p-2 rounded-full z-10 bg-gray-300 text-black text-[20px] hover:bg-gray-200 duration-300
+    }
+
+    & ul {
+      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
+    }
+    & ul li {
+      @apply min-w-[230px] flex flex-col items-center gap-2 text-center;
+    }
+     & ul li img {
+      @apply w-[180px] h-[180px] rounded-full object-cover -ml-3.5;
+    }
+  }
   .search {
     @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto;
 

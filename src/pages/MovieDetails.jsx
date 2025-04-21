@@ -1,35 +1,24 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchCreditsMovie, fetchDetailsMovie } from '../api/fetchMovies'
-import Spinner from '../components/Spinner'
+
 import CastList from '../components/CastList'
 
 const MovieDetails = () => {
 	const [details, setDetails] = useState([])
 	const [credits, setCredits] = useState({ cast: [], crew: [] })
 
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState('')
-
 	const { id } = useParams()
 	let navigate = useNavigate()
 
 	useEffect(() => {
 		const load = async () => {
-			setLoading(true)
-			setError('')
-			try {
-				const [detailsDate, creditsDate] = await Promise.all([
-					fetchDetailsMovie(id),
-					fetchCreditsMovie(id),
-				])
-				setDetails(detailsDate)
-				setCredits(creditsDate)
-			} catch {
-				setError('Something went wrong.')
-			} finally {
-				setLoading(false)
-			}
+			const [detailsDate, creditsDate] = await Promise.all([
+				fetchDetailsMovie(id),
+				fetchCreditsMovie(id),
+			])
+			setDetails(detailsDate)
+			setCredits(creditsDate)
 		}
 		load()
 	}, [id])
@@ -46,13 +35,12 @@ const MovieDetails = () => {
 			/>
 
 			<div className='wrapper'>
-
-					<button
-						className='text-white text-center w-[80px] mb-[40px] bg-gray-400'
-						onClick={() => navigate(-1)}
-					>
-						back
-					</button>
+				<button
+					className='text-white text-center w-[80px] mb-[40px] bg-gray-400'
+					onClick={() => navigate(-1)}
+				>
+					back
+				</button>
 
 				<section>
 					<article className='w-full max-w-[605px]'>
@@ -98,8 +86,8 @@ const MovieDetails = () => {
 					</article>
 				</section>
 
-				<span className='text-white mt-[450px]'>Actors</span>
-				<CastList />
+				<span className='text-white mt-[350px]'>Actors</span>
+				<CastList credits={credits.cast} />
 			</div>
 		</>
 	)
